@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="es-MX">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f6f2" />
+    <meta name="description" content="Tu primera aplicación web: registra y revisa gastos en tu navegador, sin cuentas ni suscripciones." />
+    <title>Mis Gastos | SoloBuilds</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="./" aria-label="Mis Gastos, inicio">
+          <span class="brand-mark" aria-hidden="true">S</span>
+          <span class="brand-copy"><strong>SOLOBUILDS</strong><small>PROYECTO 01 / GRATIS</small></span>
+        </a>
+        <span class="local-pill"><span class="online-dot" aria-hidden="true"></span> Datos en tu navegador</span>
+      </header>
+
+      <main>
+        <section class="intro">
+          <div>
+            <p class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span> TU PRIMERA APP CON IA</p>
+            <h1>Tu dinero,<br /><em>en orden.</em></h1>
+            <p class="intro-text">Registra tus gastos, encuentra patrones y toma el control. Sin cuentas, sin anuncios y sin pagar una mensualidad.</p>
+          </div>
+          <div class="intro-stamp" aria-label="Aplicación completamente gratis">
+            <strong>100%</strong>
+            <span>GRATIS</span>
+            <small>HECHA POR TI</small>
+          </div>
+        </section>
+
+        <section class="stats" aria-label="Resumen de gastos">
+          <article class="stat stat-primary">
+            <span class="stat-label">GASTOS ESTE MES</span>
+            <strong class="stat-number" id="month-total">$0.00</strong>
+            <span class="stat-foot" id="current-month-label">Mes actual</span>
+          </article>
+          <article class="stat">
+            <span class="stat-label">TOTAL REGISTRADO</span>
+            <strong class="stat-number" id="overall-total">$0.00</strong>
+            <span class="stat-foot">Todos tus gastos</span>
+          </article>
+          <article class="stat">
+            <span class="stat-label">MOVIMIENTOS</span>
+            <strong class="stat-number" id="record-count">0</strong>
+            <span class="stat-foot">Registros guardados</span>
+          </article>
+        </section>
+
+        <div class="workarea">
+          <section class="panel entry-panel" aria-labelledby="entry-title">
+            <div class="panel-heading">
+              <span class="panel-index">01</span>
+              <div><h2 id="entry-title">Anota un gasto</h2><p>No necesitas ser experto en finanzas.</p></div>
+            </div>
+            <form id="expense-form" autocomplete="off">
+              <label for="description">¿En qué gastaste?</label>
+              <input id="description" name="description" type="text" maxlength="80" placeholder="Ej. Tacos después del trabajo" required />
+
+              <div class="form-grid">
+                <div class="field"><label for="amount">Cantidad (MXN)</label><input id="amount" name="amount" type="number" min="0.01" max="100000000" step="0.01" placeholder="150.00" required /></div>
+                <div class="field"><label for="date">Fecha</label><input id="date" name="date" type="date" required /></div>
+              </div>
+
+              <label for="category">Categoría</label>
+              <select id="category" name="category" required>
+                <option value="Comida">Comida</option>
+                <option value="Transporte">Transporte</option>
+                <option value="Casa">Casa</option>
+                <option value="Salud">Salud</option>
+                <option value="Entretenimiento">Entretenimiento</option>
+                <option value="Otros">Otros</option>
+              </select>
+              <button class="add-button" type="submit"><span aria-hidden="true">+</span> Guardar gasto</button>
+            </form>
+            <p class="privacy-note"><span aria-hidden="true">◈</span> Los datos solo se guardan en este navegador. Descarga un respaldo CSV si los necesitas conservar.</p>
+          </section>
+
+          <section class="panel history-panel" aria-labelledby="history-title">
+            <div class="panel-heading history-heading">
+              <span class="panel-index">02</span>
+              <div class="history-title-wrap"><h2 id="history-title">Tus movimientos</h2><p>Todo claro, sin letras chiquitas.</p></div>
+              <button id="export-button" type="button" class="outline-button">↓ Exportar CSV</button>
+            </div>
+            <div class="filter-row">
+              <label for="month-filter">Filtrar por mes</label>
+              <input id="month-filter" type="month" aria-label="Filtrar movimientos por mes" />
+              <button id="clear-filter" type="button" class="text-button">Ver todos</button>
+            </div>
+            <div class="transaction-list" id="expense-list" aria-live="polite"></div>
+            <div class="history-bottom"><span id="filtered-count">0 movimientos</span><span>Moneda: MXN</span></div>
+          </section>
+        </div>
+        <p class="footer-note">UNA IDEA + CHATGPT + GIT + GITHUB = TU PRIMER PROYECTO &nbsp;·&nbsp; SOLOBUILDS</p>
+      </main>
+    </div>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
